@@ -19,10 +19,10 @@ from app.scripts.extract import get_data
 
 
 def repository_get_schedule_by_assignment():
-    assignments,classrooms,courses,professors = get_data()
+    assignments,classrooms,courses,professors,career = get_data()
     schedule = AssignmentsSchedule(
         courses=courses,assignments=assignments,
-        classrooms=classrooms,professors=professors
+        classrooms=classrooms,professors=professors,career=career
     )
     
     df = schedule.init()
@@ -70,11 +70,11 @@ def repository_get_schedule_by_assignment():
     return response
     
 def repository_get_schedule_by_professor(type):
-    assignments,classrooms,courses,professors = get_data()
+    assignments,classrooms,courses,professors,career = get_data()
     
     schedule = ProfessorSchedule(
         courses=courses,assignments=assignments,
-        classrooms=classrooms,professors=professors
+        classrooms=classrooms,professors=professors,career=career
     )
     return schedule.init(type)
     

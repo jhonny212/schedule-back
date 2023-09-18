@@ -7,7 +7,7 @@ from app.db.models import CapacibilityProfessor
 import numpy as np
 from app.db.response_models import (
     Classroom as ClassroomModel, Schedule as ScheduleModel,
-    CourseModel,ProfessorModel,SectionModel
+   
 )
 
 class ProfessorSchedule(Schedule):
@@ -92,6 +92,7 @@ class ProfessorSchedule(Schedule):
             section = row["Id_section"]
             total = row["Total"]
 
+            career = int(self.career[( self.career["Id_course"] == id_course )]["Id_career"])
             semester = self.courses[(self.courses["Id"] == id_course)]["Semester"]
 
             if [id_course,section] in data_loaded:
@@ -114,7 +115,7 @@ class ProfessorSchedule(Schedule):
             if min_row is None:
                 continue
 
-            if [int(semester),min_row] in semester_loaded:
+            if [int(semester),min_row,career] in semester_loaded:
                 continue
 
             real_schedule.iat[min_row, min_col] = {
@@ -134,7 +135,7 @@ class ProfessorSchedule(Schedule):
             )
             assig_professors.loc[filter,"registered"] = True
 
-            semester_loaded.append([int(semester),min_row])
+            semester_loaded.append([int(semester),min_row,career])
 
         filter = ( assig_professors["registered"] == False)
         return real_schedule,assig_professors[filter],schedule

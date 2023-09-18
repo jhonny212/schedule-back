@@ -31,9 +31,9 @@ class AssignmentsSchedule(Schedule):
                     if len(professors)<= 0:
                         continue
 
-                    course = get_course_model(course_id=int(course))
-
-                    if [int(course.semester),start_hour] in semester_loaded:
+                    cours = get_course_model(course_id=int(course))
+                    career = int(self.career[( self.career["Id_course"] == int(course) )]["Id_career"])
+                    if [int(cours.semester),start_hour,career] in semester_loaded:
                         continue
                     
                     #Obtener profesor en horario disponible
@@ -62,7 +62,7 @@ class AssignmentsSchedule(Schedule):
                                 "Sección": section,
                                 "Total": total
                             }
-                            semester_loaded.append([int(course.semester),start_hour])
+                            semester_loaded.append([int(cours.semester),start_hour,career])
                             schedule.loc[len(schedule)] = new_row
                             data_loaded.append([professor.Id_course,section])
                 start_hour = end_hour.time()

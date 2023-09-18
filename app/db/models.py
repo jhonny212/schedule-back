@@ -8,6 +8,7 @@ class Career(Base):
     
     Code = Column(Integer, primary_key=True, autoincrement=True)
     Extension = Column(Integer, nullable=False)
+    Name = Column(String, nullable=False)
 
 class Student(Base):
     __tablename__ = 'Student'
@@ -51,6 +52,7 @@ class Assignment(Base):
     Id_section = Column(Integer, ForeignKey('Section.Id'), primary_key=True)
     Id_course = Column(Integer, ForeignKey('Course.Id'), primary_key=True)
     Id_student = Column(Integer, ForeignKey('Student.Carnet'), primary_key=True)
+    course = relationship("Course")
 
 class Classroom(Base):
     __tablename__ = 'Classroom'

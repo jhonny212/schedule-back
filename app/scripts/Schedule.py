@@ -11,11 +11,12 @@ from app.scripts.common import get_course_model
 
 class Schedule:
 
-    def __init__(self,professors:pd.DataFrame,assignments:pd.DataFrame,courses:pd.DataFrame,classrooms:pd.DataFrame):
+    def __init__(self,professors:pd.DataFrame,assignments:pd.DataFrame,courses:pd.DataFrame,classrooms:pd.DataFrame,career:pd.DataFrame):
         self.professors = professors
         self.assignments = assignments
         self.courses = courses
         self.classrooms = classrooms
+        self.career =career
         self.DATE_START = datetime.time(12,50,0)
         self.DATE_END   = datetime.time(22,0,0)
         self.DURATION = 50

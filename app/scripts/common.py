@@ -26,7 +26,7 @@ def get_professor_model(professor_id):
 
 def get_course_model(course_id):
     entity:Course = get_entity_by_id(Course,int(course_id))
-    return CourseModel(id=entity.Id, name=entity.Name, semester=entity.Semester)
+    return CourseModel(id=entity.Id, name=entity.Name, semester=entity.Semester, id_career=-1)
 
 def get_section_model(section_id):
     entity: Section = get_entity_by_id(Section,section_id)

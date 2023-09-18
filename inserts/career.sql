@@ -3,3 +3,7 @@ INSERT INTO public."Career"
 (1,'Ingenieria Industrial'),
 (2,'Ingenieria En Sistemas')
 ;
+
+
+insert into "CareerCourse" ("Id_career", "Id_course")
+select 2,"Id" from "Course"
